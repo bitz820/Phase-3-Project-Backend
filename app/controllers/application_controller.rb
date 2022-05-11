@@ -2,16 +2,14 @@ require 'pry'
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
-  # Add your routes here
-  # get "/" do
-  #   { message: "Good luck with your project!" }.to_json
-  # end
-
   get "/users" do
     users = User.all
     serialize(users)
   end
 
+  # When a like happens, we need to post/patch based on the like instance creation to the like table.  This should render on Matches (if aplicable)
+
+  # Returns array of all users yet to be liked (excluding self)
   get "/users/:id" do
     user = User.find(params[:id])
     not_me = User.all.filter{|item| 
@@ -30,17 +28,36 @@ class ApplicationController < Sinatra::Base
     serialize(data)
 
   end
+# am I patching the list of matches? this is an endpoint but not a table
 
-  get "/users/:id/matches" do
-    matches = Match.all.where("user_id_1 = ? or user_id_2 = ?", params[:id], params[:id])
-    found_users = []
-    matches.each do |match|  
-      match.user_id_1 == params[:id].to_i ? found_users<< User.find(match.user_id_2) : found_users << User.find(match.user_id_1)
-    end
+  # Want to fetch all current matches based on match method for user
+  # get "/users/:id/matches" do
+  get "/users/1/matches" do
     # binding.pry
+    # user = User.find(params[:id])
+    user = User.find(1)
+    matches = user.match
+    # call match method , :match
+    serialize(matches)
+  end
 
-    serialize(found_users)
-   
+  # This should be a response to the event listener of the button
+  post "/users/1/matches" do
+     binding.pry
+    # user = User.find(params[:id])
+    user = User.find(1)
+    # NEED PARAMS OTHERUSER ID
+
+    # find id of the profile which buton was clicked on and create new like
+    user.has_liked()
+  end
+
+  delete "/users/1/matches" do
+    # user = User.find(params[:id])
+    user = User.find(1)
+
+    # find the id of the person which button was clicked on, and destroy the like instance
+
   end
 
   # patch "/users/:id/likes" do
@@ -55,8 +72,8 @@ class ApplicationController < Sinatra::Base
 
   private
 
-  def serialize(param)
-    param.to_json
+  def serialize(objects)
+    objects.to_json
   end
 
 end

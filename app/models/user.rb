@@ -34,21 +34,22 @@ class User < ActiveRecord::Base
         matches = match_ids.map{|num| User.find(num)}
       end
 
+      # this happnes when i click the like button
       def has_liked (other_person_id)
-        # liked_people = []
-      
-        # If she likes him, and he likes her then create a match
-        binding.pry
-        test = Like.where(user_id: other_person_id , liked_user_id: self.id).first
-        # print test
-        if test #create a match
-          newLike = Like.create(user_id:self.id, liked_user_id: other_person_id )
-          Match.create(likes_id_1:test.id , likes_id_2:newLike.id, user_id_1:self.id, user_id_2:other_person_id)
+        # binding.pry
+        liked_me_exists = Like.where(user_id: other_person_id , liked_user_id: self.id).first
+        if Like.where(user_id: self.id, liked_user_id: other_person_id).exists?
+          nil
         elsif
-          # create a like 
           create_like_instance = Like.create(user_id: self.id, liked_user_id: other_person_id)
-          create_like_instance
         end
+
+        # if liked_me_exists #create a match
+        #   create_match = Like.create(user_id:self.id, liked_user_id: other_person_id )
+        # elsif
+        #   # create a like 
+        #   create_like_instance
+        # end
         # Like.find_by(like => like.user_id == self.id && like.liked_user_id == other_person_id)
         # if User.likes.find(other_person_id)
         #   Match.create(likes_id_1: self.id, likes_id_2: other_person_id)
