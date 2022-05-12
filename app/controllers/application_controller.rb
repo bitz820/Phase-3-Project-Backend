@@ -42,22 +42,28 @@ class ApplicationController < Sinatra::Base
   end
 
   # This should be a response to the event listener of the button
-  post "/users/1/matches" do
-     binding.pry
+  # post "/users/1/matches" do
+  post "/likes" do
+    #  binding.pry
     # user = User.find(params[:id])
     user = User.find(1)
     # NEED PARAMS OTHERUSER ID
 
     # find id of the profile which buton was clicked on and create new like
-    user.has_liked()
+    user.has_liked(params[:liked_user_id]).to_json
   end
 
-  delete "/users/1/matches" do
-    # user = User.find(params[:id])
+  # delete "/likes/:id" do
+  delete "/likes/:liked_user_id" do
+  
+
+    # user = User.find(params[:liked_user_id])
     user = User.find(1)
 
     # find the id of the person which button was clicked on, and destroy the like instance
-
+    delete_like = user.likes.find_by(liked_user_id: params[:liked_user_id])
+    delete_like.destroy
+    delete_like.to_json
   end
 
   # patch "/users/:id/likes" do
