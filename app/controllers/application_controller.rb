@@ -66,7 +66,7 @@ end
   delete "/likes/:liked_user_id" do
 
     user = User.find(1)
-    # How do I get the params for user_id
+    # How do I get the params for user_id when not in the endpoint for user
     # user = User.find(params[:user_id])
 
     # find the id of the person which button was clicked on, and destroy the like instance
@@ -88,7 +88,7 @@ end
   end
 
   def profile_params
-    allowed_params = %w(username password name bio gender interests profile_picture)
+    allowed_params = %w(username password name bio interested_in interests profile_picture pickup_line)
     params.select {|param, value| allowed_params.include?(param)}
   end
 
