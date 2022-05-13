@@ -9,7 +9,7 @@ random_photo = Faker::LoremFlickr.image(size: "250x250", search_terms: ['person'
 users = User.create(
     name: Faker::Name.name,
     username: Faker::Internet.username,
-    password: "password",
+    password: Faker::Internet.password,
     profile_picture: random_photo,
     bio: Faker::Quote.most_interesting_man_in_the_world,
     gender: Faker::Gender.type,
@@ -34,11 +34,11 @@ puts "✅ Done seeding!"
 
 # User.create(
 #     name: Faker::Name.name,
-#     username: Faker::Internet.username,
-#     password: "password",
+#     username: "india.fadel",
+#     password: Faker::Internet.password,
 #     profile_picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR6mYeS7Nja8AEFHAOa1Zq6-p1COktGzTRgg&usqp=CAU",
-#     bio: Faker::Quote.most_interesting_man_in_the_world,
-#     gender: Faker::Gender.type,
+#     bio: "Trust me, I'm user friendly.",
+#     gender: "Lesbian",
 #     interests: Faker::Hipster.words(number: 4).join(", ").to_s,
 # )
 # User.create(

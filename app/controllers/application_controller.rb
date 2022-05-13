@@ -64,7 +64,7 @@ end
   end
 
   delete "/likes/:liked_user_id" do
-  binding.pry
+
     user = User.find(1)
     # How do I get the params for user_id
     # user = User.find(params[:user_id])
@@ -88,7 +88,7 @@ end
   end
 
   def profile_params
-    allowed_params = %w(username password name bio gender interests)
+    allowed_params = %w(username password name bio gender interests profile_picture)
     params.select {|param, value| allowed_params.include?(param)}
   end
 
