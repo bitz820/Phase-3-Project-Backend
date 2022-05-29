@@ -5,14 +5,17 @@ default: &default
 
 development:
   adapter: sqlite3
-  database: db/database.db
+  database: database.db
 
 test:
   adapter: sqlite3
-  database: db/database.db
+  database: database.db
 
 production:
   adapter: postgresql
   database: database 
-  url: <%= ENV['DATABASE_URL'] %>
+  username: username
+  password: password
+  host: localhost
+  # url: <%= ENV['DATABASE_URL'] %>
 
