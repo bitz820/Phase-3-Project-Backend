@@ -13,9 +13,9 @@ test:
 
 production:
   adapter: postgresql
-  database: database 
+  database: database.db 
   username: username
   password: password
   host: localhost
-  # url: <%= ENV['DATABASE_URL'] %>
+  url: <%= ENV['DATABASE_URL'] %>
 
