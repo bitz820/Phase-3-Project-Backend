@@ -13,7 +13,7 @@ test:
 
 production:
   adapter: postgresql
-  database: database.db 
+  database: database
   username: username
   password: password
   host: localhost
