@@ -13,5 +13,6 @@ test:
 
 production:
   adapter: postgresql
-  database: database #rename this to whatever you want
+  database: database 
+  url: <%= ENV['DATABASE_URL'] %>
 
