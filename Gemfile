@@ -60,6 +60,6 @@ end
   group :production do
    gem 'pg'
    gem 'activerecord-postgresql-adapter'
-     gem "faker", "~> 2.18"
+    gem "faker", "~> 2.18"
 
 end
