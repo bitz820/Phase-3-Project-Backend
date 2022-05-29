@@ -1,4 +1,4 @@
-require 'pry'
+
 class User < ActiveRecord::Base
   has_many :likes
   has_many :likes_as_liked, class_name: 'Like', foreign_key: :liked_user_id
