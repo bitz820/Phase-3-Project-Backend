@@ -4,13 +4,14 @@ default: &default
   timeout: 5000
 
 development:
-  <<: *default
-  database: db/development.sqlite3
+  adapter: sqlite3
+  database: db/database.db
 
 test:
-  <<: *default
-  database: db/test.sqlite3
+  adapter: sqlite3
+  database: db/database.db
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  database: database #rename this to whatever you want
+
